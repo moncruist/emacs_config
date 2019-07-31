@@ -1,6 +1,11 @@
 ;; Main configuration file
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
+
+;; Environment settings
+(if (equal system-type 'darwin)
+    (load "~/.emacs.d/lisp/macos.el"))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -65,6 +70,13 @@
 
 (add-hook 'c++-mode-hook 'moncruist-cpp-mode-hook)
 
+;; CCLS
+(require 'ccls)
+
+;; LSP mode
+(require 'lsp-mode)
+(add-hook 'c++-mode-hook #'lsp)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -77,7 +89,7 @@
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-    (magit flycheck company company-lsp helm lsp-mode neotree projectile spacemacs-theme))))
+    (ccls yasnippet magit flycheck company company-lsp helm lsp-mode neotree projectile spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
