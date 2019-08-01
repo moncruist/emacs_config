@@ -113,11 +113,8 @@
  '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(package-selected-packages
-   (quote
-    (yasnippet-classic-snippets ccls yasnippet magit flycheck company company-lsp helm lsp-mode neotree projectile spacemacs-theme))))
-(custom-set-faces
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))))
+ (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
