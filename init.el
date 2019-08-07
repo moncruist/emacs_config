@@ -5,6 +5,8 @@
 ;; Environment settings
 (if (equal system-type 'darwin)
     (load "~/.emacs.d/lisp/macos.el"))
+(if (equal system-type 'gnu/linux)
+    (load "~/.emacs.d/lisp/linux.el"))
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
