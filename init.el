@@ -105,6 +105,7 @@
 ;; Company LSP
 (require 'company-lsp)
 (push 'company-lsp company-backends)
+(global-set-key (kbd "C-.") 'company-complete-common)
 
 
 (custom-set-variables
