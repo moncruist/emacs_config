@@ -10,3 +10,6 @@
    (getenv "PATH")
   )
 )
+
+;; Bigger fonts on Macbook Pro
+(set-frame-font "Hack 14" nil t)
