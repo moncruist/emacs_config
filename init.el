@@ -8,6 +8,7 @@
 (if (equal system-type 'gnu/linux)
     (load "~/.emacs.d/lisp/linux.el"))
 
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -34,8 +35,6 @@
 (global-display-line-numbers-mode t)
 (column-number-mode t)
 (size-indication-mode t)
-
-(set-frame-font "Hack 14" nil t)
 
 ;; set up backup files locations
 (setq backup-directory-alist
@@ -107,6 +106,15 @@
 (push 'company-lsp company-backends)
 (global-set-key (kbd "C-.") 'company-complete-common)
 
+;; Multiple cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
+(global-set-key (kbd "C-S-c C-a") 'mc/edit-beginnings-of-lines)
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+
+;; Magit
+(require 'magit)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -116,8 +124,12 @@
  '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))))
- (custom-set-faces
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(package-selected-packages
+   (quote
+    (magit magit-gh-pulls multiple-cursors spacemacs-theme neotree helm-projectile flycheck company-lsp ccls))))
+ 
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
