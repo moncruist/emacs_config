@@ -1,6 +1,6 @@
 ;; Main configuration file
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
@@ -9,7 +9,12 @@
     (load "~/.emacs.d/lisp/macos.el"))
 (if (equal system-type 'gnu/linux)
     (load "~/.emacs.d/lisp/linux.el"))
+(if (equal system-type 'windows-nt)
+    (load (expand-file-name "lisp/windows.el" user-emacs-directory)))
 
+(setq proxy-settings-file (expand-file-name "proxy.el" user-emacs-directory))
+(if (file-exists-p proxy-settings-file)
+    (load proxy-settings-file))
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -18,6 +23,7 @@
 (package-initialize)
 
 ;; General configuration
+(load-theme 'spacemacs-dark)
 
 ;; Disable backup
 
@@ -97,7 +103,8 @@
 (add-hook 'c++-mode-hook 'moncruist-cpp-mode-hook)
 
 ;; CCLS
-(require 'ccls)
+(if (not (equal system-type 'windows-nt))
+    (require 'ccls))
 
 ;; LSP mode
 (require 'lsp-mode)
