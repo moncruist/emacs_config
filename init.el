@@ -23,7 +23,7 @@
 (package-initialize)
 
 ;; General configuration
-(load-theme 'spacemacs-dark)
+(load-theme 'spacemacs-dark t)
 
 ;; Disable backup
 
@@ -77,6 +77,9 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-mode +1)
 (setq projectile-project-search-path '("~/git"))
+(if (equal system-type 'windows-nt)
+    (setq projectile-indexing-method 'alien))
+
 
 ;; Neotree
 (require 'neotree)
@@ -100,7 +103,10 @@
 (defun moncruist-cpp-mode-hook ()
   (c-add-style "Moncruist" moncruist-cpp-style t))
 
+(require 'google-c-style)
+
 (add-hook 'c++-mode-hook 'moncruist-cpp-mode-hook)
+(add-hook 'c++-mode-hook 'google-set-c-style)
 
 ;; CCLS
 (if (not (equal system-type 'windows-nt))
