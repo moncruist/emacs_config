@@ -71,21 +71,6 @@
 ;; Flycheck
 (require 'flycheck)
 
-;; Projectile
-(require 'projectile)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
-(setq projectile-project-search-path '("~/git"))
-(if (equal system-type 'windows-nt)
-    (setq projectile-indexing-method 'alien))
-
-
-;; Neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq projectile-switch-project-action 'neotree-projectile-action)
-
 ;; Helm
 (require 'helm)
 (require 'helm-config)
@@ -97,6 +82,24 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t
       helm-echo-input-in-header-line t)
+
+;; Projectile
+(require 'projectile)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
+(setq projectile-project-search-path '("~/git"))
+(if (equal system-type 'windows-nt)
+    (setq projectile-indexing-method 'alien))
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+
+
+;; Neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; Cpp style
 (require 'moncruist-cpp-style)
@@ -134,5 +137,6 @@
 ;; Elpy
 (require 'elpy)
 (elpy-enable)
-;(setq elpy-rpc-python-command "python3")
-;(setq python-shell-interpreter "python3")
+(setq elpy-rpc-python-command "/usr/bin/python3")
+(setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i")
