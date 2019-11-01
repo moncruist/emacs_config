@@ -119,10 +119,14 @@
 (require 'lsp-mode)
 (add-hook 'c++-mode-hook #'lsp)
 
+;; Company
+(require 'company)
+(global-company-mode)
+(global-set-key (kbd "C-.") 'company-complete-common)
+
 ;; Company LSP
 (require 'company-lsp)
 (push 'company-lsp company-backends)
-(global-set-key (kbd "C-.") 'company-complete-common)
 
 ;; Multiple cursors
 (require 'multiple-cursors)
